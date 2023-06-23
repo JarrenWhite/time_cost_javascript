@@ -1,11 +1,12 @@
 import {useState} from 'react'
 import './App.css'
 import WageForm from "./wage_form/WageForm.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
-    const [salary, setSalary] = useState(0);
+    const [salary, setSalary] = useState('');
     const [payFrequency, setPayFrequency] = useState('Year'); // Hour, Day, Week, Month, Year, Four Weeks
-    const [hours, setHours] = useState(0);
+    const [hours, setHours] = useState('');
     const [hourFrequency, setHourFrequency] = useState('Week'); // Hour, Day, Week, Month, Year, Four Weeks
 
     const changeSalary = (newSalary) => {
