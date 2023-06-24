@@ -1,7 +1,7 @@
 import './App.css'
-import {SalaryInfoFunctions} from "./SalaryInfoFunctions.jsx";
 import WageForm from "./wage_form/WageForm.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {SalaryInfoFunctions} from "./wage_form/SalaryInfoFunctions.jsx";
 
 function App() {
     const {
@@ -9,6 +9,7 @@ function App() {
         payFrequency,
         hours,
         hourFrequency,
+        payPerHour,
         changeSalary,
         changePayFrequency,
         changeHours,
@@ -16,9 +17,12 @@ function App() {
         wageFormProps,
     } = SalaryInfoFunctions();
 
+
+
     return (
         <>
             <WageForm {...wageFormProps} />
+            <label>{payPerHour.toFixed(2)}</label>
         </>
     )
 }
