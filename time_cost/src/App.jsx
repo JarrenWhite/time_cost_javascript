@@ -24,8 +24,9 @@ function App() {
 
     return (
         <>
-            <WageForm salary={salary} changeSalary={changeSalary} payFrequency={payFrequency} changePayFrequency={changePayFrequency}
-            hours={hours} changeHours={changeHours} hourFrequency={hourFrequency} changeHourFrequency={changeHourFrequency}/>
+            <WageForm salary={salary} changeSalary={changeSalary} payFrequency={payFrequency}
+                      changePayFrequency={changePayFrequency} hours={hours} changeHours={changeHours}
+                      hourFrequency={hourFrequency} changeHourFrequency={changeHourFrequency}/>
         </>
     )
 }

@@ -1,10 +1,11 @@
 function SalaryForm({salary, changeSalary}) {
 
+    const salaryRegex = /^\d+(\.\d{0,2})?$/;
+
     const handleInputChange = (e) => {
         const inputValue = e.target.value.replace('£', '');
-        const regex = /^\d+(\.\d{0,2})?$/;
 
-        if (inputValue === '' || regex.test(inputValue)) {
+        if (inputValue === '' || salaryRegex.test(inputValue)) {
             changeSalary(inputValue);
         }
     }
