@@ -8,7 +8,7 @@ export function SalaryInfoFunctions() {
     const [hourFrequency, setHourFrequency] = useState('Week'); // Hour, Week, Month, Year, Four Weeks
     const [payPerHour, setPayPerHour] = useState(0);
 
-    const {getPayPerHour, debugPrint} = WageCalculator({salary, payFrequency, hours, hourFrequency});
+    const {getPayPerHour} = WageCalculator({salary, payFrequency, hours, hourFrequency});
 
     useEffect(() => {
         changePayPerHour();
@@ -27,7 +27,6 @@ export function SalaryInfoFunctions() {
         setHourFrequency(newHourFrequency);
     }
     const changePayPerHour = () => {
-        debugPrint();
         if (salary !== '' && hours !== '') {
             setPayPerHour(getPayPerHour());
         }

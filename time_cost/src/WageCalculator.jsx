@@ -31,13 +31,6 @@ export function WageCalculator({salary, payFrequency, hours, hourFrequency}) {
         return fullHours + numericMinutes;
     }
 
-    // Switch hours from decimal form to human-readable format
-    const hoursToReadable = (decimalHours) => {
-        const fullHours = Math.floor(decimalHours).toString();
-        const minutes = ((decimalHours - fullHours) * 60).toString();
-        return fullHours + ':' + minutes;
-    }
-
     const getPayPerHour = () => {
         // If payFrequency is hourly, already have pay per hour
         if (payFrequency === 'Hour') {
@@ -50,15 +43,7 @@ export function WageCalculator({salary, payFrequency, hours, hourFrequency}) {
         return (yearlySalary / yearlyHours);
     }
 
-    const debugPrint = () => {
-        console.log('_____________')
-        console.log('salary: ' + salary);
-        console.log('hours: ' + hours);
-        console.log('decimal hours: ' + hoursToDecimal(hours));
-        console.log('Hourly: ' + getPayPerHour());
-    }
-
     return {
-        getPayPerHour, debugPrint
+        getPayPerHour
     }
 }
