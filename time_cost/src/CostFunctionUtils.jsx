@@ -1,5 +1,4 @@
-export function WageCalculator({salary, payFrequency, hours, hourFrequency}) {
-
+export function CostFunctionUtils({salary, payFrequency, hours, hourFrequency}) {
     // Number of times per year that the event occurs
     const timesPerYear = {'Week': 52, 'Month': 12, 'Year': 1, 'Four Weeks': 13}
 
@@ -31,7 +30,7 @@ export function WageCalculator({salary, payFrequency, hours, hourFrequency}) {
         return fullHours + numericMinutes;
     }
 
-    const getPayPerHour = () => {
+    const recalculatePayPerHour = () => {
         // If payFrequency is hourly, already have pay per hour
         if (payFrequency === 'Hour') {
             return parseFloat(salary);
@@ -44,6 +43,6 @@ export function WageCalculator({salary, payFrequency, hours, hourFrequency}) {
     }
 
     return {
-        getPayPerHour
+        recalculatePayPerHour
     }
 }

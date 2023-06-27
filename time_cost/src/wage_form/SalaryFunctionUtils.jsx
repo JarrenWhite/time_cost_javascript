@@ -1,19 +1,23 @@
 import {useEffect, useState} from "react";
-import {WageCalculator} from "../WageCalculator.jsx";
+import {CostFunctionUtils} from "../CostFunctionUtils.jsx";
 
-export function SalaryInfoFunctions() {
+export function SalaryFunctionUtils() {
+    // Variables for salary information
     const [salary, setSalary] = useState('');
     const [payFrequency, setPayFrequency] = useState('Year'); // Hour, Week, Month, Year, Four Weeks
     const [hours, setHours] = useState('');
     const [hourFrequency, setHourFrequency] = useState('Week'); // Hour, Week, Month, Year, Four Weeks
     const [payPerHour, setPayPerHour] = useState(0);
 
-    const {getPayPerHour} = WageCalculator({salary, payFrequency, hours, hourFrequency});
+    // Get Pay Per Hour info from wage calculator
+    const {recalculatePayPerHour} = CostFunctionUtils({salary, payFrequency, hours, hourFrequency});
 
+    // Update pay per hour on variable change
     useEffect(() => {
         changePayPerHour();
     }, [salary, payFrequency, hours, hourFrequency]);
 
+    // Manage variable changes
     const changeSalary = (newSalary) => {
         setSalary(newSalary);
     }
@@ -27,11 +31,12 @@ export function SalaryInfoFunctions() {
         setHourFrequency(newHourFrequency);
     }
     const changePayPerHour = () => {
-        if (salary !== '' && hours !== '') {
-            setPayPerHour(getPayPerHour());
+        if (salary !== '' && (payFrequency === 'Hours' || hours !== '')) {
+            setPayPerHour(recalculatePayPerHour());
         }
     }
 
+    // Wage form props
     const wageFormProps = {
         salary,
         payFrequency,

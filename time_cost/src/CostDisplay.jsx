@@ -1,32 +1,28 @@
-function CostDisplay({payPerHour}) {
+function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, setHourCost, calculateTimeCost}) {
+    const costRegex = /^\d*\.?\d?\d?$/
 
-    // Switch hours from decimal form to human-readable format
-    const hoursToReadable = (decimalHours) => {
-        const fullHours = Math.floor(decimalHours).toString();
-        const minutes = Math.round((decimalHours - fullHours) * 60).toString();
-
-        // If minutes string is too short
-        if (minutes.length === 1) {
-            return fullHours + ':0' + minutes
+    const handleInputChange = (e) => {
+        const inputValue = e.target.value;
+        if (inputValue === '') {
+            setFinancialCost(inputValue);
+            setHourCost('--:--');
+        } else if (costRegex.test(inputValue)) {
+            setFinancialCost(inputValue);
+            setHourCost(calculateTimeCost(parseFloat(inputValue)));
         }
-        return fullHours + ':' + minutes;
-    }
-
-    const calculateTimeCost = (itemCost) => {
-        if (payPerHour !== 0) {
-            return hoursToReadable(itemCost / payPerHour);
-        }
-        return '--:--';
     }
 
     return(
-        <>
+        <div>
             <label>Pay Per Hour: £{payPerHour.toFixed(2)}</label>
-            <label>£1.00 - {calculateTimeCost(payPerHour)}</label>
-            <label>£1.00 - {calculateTimeCost(1)}</label>
-            <label>£10.00 - {calculateTimeCost(10)}</label>
-            <label>£100.00 - {calculateTimeCost(100)}</label>
-        </>
+            <input
+                type="text"
+                value={financialCost}
+                onChange={handleInputChange}
+                placeholder="Enter Item Cost"
+            />
+            <label>Costs {hoursCost} hours of work.</label>
+        </div>
     )
 }
 
