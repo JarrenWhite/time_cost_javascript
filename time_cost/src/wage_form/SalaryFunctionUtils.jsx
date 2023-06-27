@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {CostFunctionUtils} from "../CostFunctionUtils.jsx";
+import {CostFunctionUtils} from "../cost_details/CostFunctionUtils.jsx";
 
 export function SalaryFunctionUtils() {
     // Variables for salary information
