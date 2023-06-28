@@ -1,0 +1,12 @@
+Build the deployment:
+    npm run build
+
+Deploy the deployment:
+    npm run deploy
+
+Common errors:
+"fatal: A branch named 'gh-pages' already exists."
+    rm -rf node_modules/.cache/gh-pages
+
+GitPage is blank:
+    Add 'base: "/time_cost_javascript/",' to 'vite.config.js'
