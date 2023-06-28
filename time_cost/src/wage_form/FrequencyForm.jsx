@@ -8,7 +8,7 @@ function FrequencyForm({frequency, changeFrequency}){
 
     return(
         <Form.Group>
-            <Form.Control as="select" value={frequency} onChange={handleOptionChange}>
+            <Form.Control className="form-select form-select-override" as="select" value={frequency} onChange={handleOptionChange}>
                 <option value="Hour">Hour</option>
                 <option value="Week">Week</option>
                 <option value="Month">Month</option>

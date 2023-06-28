@@ -34,6 +34,7 @@ function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, se
                 <Form.Label>Pay Per Hour: £{payPerHour.toFixed(2)}</Form.Label>
                 <InputGroup>
                     <Form.Control
+                        className={"cost-display"}
                         type="text"
                         value={displayedValue}
                         onChange={handleInputChange}

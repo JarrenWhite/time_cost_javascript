@@ -1,4 +1,5 @@
 import './App.css'
+import './css/Default.css'
 import WageForm from "./wage_form/WageForm.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {SalaryFunctionUtils} from "./wage_form/SalaryFunctionUtils.jsx";
