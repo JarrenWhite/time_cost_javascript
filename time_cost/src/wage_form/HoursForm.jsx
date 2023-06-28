@@ -1,3 +1,6 @@
+import {Form, InputGroup} from "react-bootstrap";
+import React from "react";
+
 function HoursForm({hours, changeHours}) {
 
     const hoursRegex = /^(\d+):?([0-5]\d?)?$/;
@@ -11,12 +14,16 @@ function HoursForm({hours, changeHours}) {
     }
 
     return(
-        <input
-            type="text"
-            value={hours}
-            onChange={handleInputChange}
-            placeholder="Enter hours amount"
-        />
+        <Form.Group>
+            <InputGroup>
+                <Form.Control
+                    type="text"
+                    value={hours}
+                    onChange={handleInputChange}
+                    placeholder="Enter Hours Worked"
+                />
+            </InputGroup>
+        </Form.Group>
     )
 }
 

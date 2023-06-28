@@ -1,18 +1,21 @@
+import {Form} from "react-bootstrap";
+import React from "react";
+
 function FrequencyForm({frequency, changeFrequency}){
     const handleOptionChange = (event) => {
         changeFrequency(event.target.value);
     };
 
     return(
-        <div>
-            <select value={frequency} onChange={handleOptionChange}>
+        <Form.Group>
+            <Form.Control as="select" value={frequency} onChange={handleOptionChange}>
                 <option value="Hour">Hour</option>
                 <option value="Week">Week</option>
                 <option value="Month">Month</option>
                 <option value="Year">Year</option>
                 <option value="Four Weeks">Four Weeks</option>
-            </select>
-        </div>
+            </Form.Control>
+        </Form.Group>
     )
 }
 

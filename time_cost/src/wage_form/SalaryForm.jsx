@@ -1,3 +1,6 @@
+import {Form, InputGroup} from "react-bootstrap";
+import React from "react";
+
 function SalaryForm({salary, changeSalary}) {
 
     const salaryRegex = /^\d+(\.\d{0,2})?$/;
@@ -14,12 +17,16 @@ function SalaryForm({salary, changeSalary}) {
     const displayedValue = salary === '' ? '' : '£' + salary
 
     return(
-        <input
-            type="text"
-            value={displayedValue}
-            onChange={handleInputChange}
-            placeholder="Enter salary amount"
-        />
+        <Form.Group>
+            <InputGroup>
+                <Form.Control
+                    type="text"
+                    value={displayedValue}
+                    onChange={handleInputChange}
+                    placeholder="Enter Salary Amount"
+                />
+            </InputGroup>
+        </Form.Group>
     )
 }
 
