@@ -36,6 +36,31 @@ export function SalaryFunctionUtils() {
         }
     }
 
+    // When pay per hour changes
+    useEffect(() => {
+        updateCookie();
+    }, [payPerHour]);
+
+    const updateCookie = () => {
+        // If either are empty, don't proceed
+        if (salary === '' || hours === '') {
+            return;
+        }
+
+        // Creat cookie as an array
+        const cookieArray = {
+            salary: salary,
+            payFrequency: payFrequency,
+            hours: hours,
+            hourFrequency: hourFrequency,
+        }
+
+        // Serialise content of cookie
+        const cookieString = JSON.stringify(cookieArray);
+        console.log(cookieArray);
+        console.log(cookieString);
+    }
+
     // Wage form props
     const wageFormProps = {
         salary,
