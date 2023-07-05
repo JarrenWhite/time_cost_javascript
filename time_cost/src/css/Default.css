@@ -12,3 +12,16 @@ body {
 .form-control {
 
 }
+
+.frequency-form-bar {
+    display: flex;
+}
+
+.frequency-form-input {
+    flex-grow: 1;
+}
+
+.per-phrase {
+    margin-left: 10px;
+    margin-right: 5px;
+}
