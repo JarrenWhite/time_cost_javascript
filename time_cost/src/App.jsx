@@ -7,15 +7,16 @@ import CostDisplay from "./cost_details/CostDisplay.jsx";
 import {HoursCostFunctionUtils} from "./cost_details/HoursCostFunctionUtils.jsx";
 import {Cookies} from "react-cookie";
 import {CookiesUtils} from "./wage_form/CookiesUtils.jsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 function App() {
+    const [denyCookies, setDenyCookies] = useState(true)
     const cookies = new Cookies()
 
     const {
         payPerHour,
         salaryFunctionComponents,
-    } = SalaryFunctionUtils(cookies);
+    } = SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,);
     const {
         costDisplayProps
     } = HoursCostFunctionUtils({payPerHour});
