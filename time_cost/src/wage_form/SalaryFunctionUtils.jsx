@@ -1,5 +1,7 @@
 import {useEffect, useState} from "react";
 import {CostFunctionUtils} from "../cost_details/CostFunctionUtils.jsx";
+import {Cookies} from "react-cookie";
+import {CookiesUtils} from "./CookiesUtils.jsx";
 
 export function SalaryFunctionUtils() {
     // Variables for salary information
@@ -37,29 +39,12 @@ export function SalaryFunctionUtils() {
     }
 
     // When pay per hour changes
+    const cookies = new Cookies();
+    const { updateCookie } = CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency);
     useEffect(() => {
         updateCookie();
     }, [payPerHour]);
 
-    const updateCookie = () => {
-        // If either are empty, don't proceed
-        if (salary === '' || hours === '') {
-            return;
-        }
-
-        // Creat cookie as an array
-        const cookieArray = {
-            salary: salary,
-            payFrequency: payFrequency,
-            hours: hours,
-            hourFrequency: hourFrequency,
-        }
-
-        // Serialise content of cookie
-        const cookieString = JSON.stringify(cookieArray);
-        console.log(cookieArray);
-        console.log(cookieString);
-    }
 
     // Wage form props
     const wageFormProps = {
