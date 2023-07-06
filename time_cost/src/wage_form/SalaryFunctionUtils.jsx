@@ -39,6 +39,7 @@ export function SalaryFunctionUtils(cookies) {
 
     // Wage form props
     const salaryFunctionComponents = {
+        cookies,
         salary,
         payFrequency,
         hours,
@@ -50,7 +51,7 @@ export function SalaryFunctionUtils(cookies) {
     };
 
     // When pay per hour changes
-    const { updateCookie } = CookiesUtils(cookies, salaryFunctionComponents);
+    const { updateCookie } = CookiesUtils(salaryFunctionComponents);
     useEffect(() => {
         updateCookie();
     }, [payPerHour]);
@@ -65,7 +66,6 @@ export function SalaryFunctionUtils(cookies) {
         changePayFrequency,
         changeHours,
         changeHourFrequency,
-        salaryFunctionComponents
+        salaryFunctionComponents,
     };
 }
-

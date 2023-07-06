@@ -19,7 +19,7 @@ function App() {
     const {
         costDisplayProps
     } = HoursCostFunctionUtils({payPerHour});
-    const { readCookie } = CookiesUtils(cookies, salaryFunctionComponents);
+    const { readCookie } = CookiesUtils(salaryFunctionComponents);
 
     useEffect(() => {
         readCookie();
