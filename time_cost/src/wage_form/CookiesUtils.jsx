@@ -6,7 +6,7 @@ export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequenc
     const domain = isLocalhost ? 'localhost' : 'jarrenwhite.github.io';
     const salaryCookie = 'settings-cookie'
 
-    let cookieRead = true
+    let cookieRead = false
     const readCookie = () => {
         // Prevent rerunning the function
         if (cookieRead) {
@@ -15,12 +15,19 @@ export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequenc
             cookieRead = true;
         }
 
+        // Get information from cookies
         const cookieList = document.cookie.split(';');
 
+        // Parse salary data from cookie
         if (cookieList.length > 0 && cookieList[0].startsWith(salaryCookie + '=')) {
-            const salaryCookieValues = cookieList[0].substring(salaryCookie.length + 1);
-            console.log(JSON.parse(decodeURIComponent(salaryCookieValues)))
+            const salaryCookieString = cookieList[0].substring(salaryCookie.length + 1);
+            const salaryCookieValues = JSON.parse(decodeURIComponent(salaryCookieString))
 
+            // Set values by cookies
+            changeSalary(salaryCookieValues.salary)
+            changePayFrequency(salaryCookieValues.payFrequency)
+            changeHours(salaryCookieValues.hours)
+            changeHourFrequency(salaryCookieValues.hourFrequency)
         }
     }
 
