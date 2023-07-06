@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import {CostFunctionUtils} from "../cost_details/CostFunctionUtils.jsx";
+import {CookiesUtils} from "./CookiesUtils.jsx";
 
-export function SalaryFunctionUtils() {
+export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     // Variables for salary information
     const [salary, setSalary] = useState('');
     const [payFrequency, setPayFrequency] = useState('Year'); // Hour, Week, Month, Year, Four Weeks
@@ -37,7 +38,8 @@ export function SalaryFunctionUtils() {
     }
 
     // Wage form props
-    const wageFormProps = {
+    const salaryFunctionComponents = {
+        cookies,
         salary,
         payFrequency,
         hours,
@@ -46,7 +48,15 @@ export function SalaryFunctionUtils() {
         changePayFrequency,
         changeHours,
         changeHourFrequency,
+        denyCookies,
+        setDenyCookies,
     };
+
+    // When pay per hour changes
+    const { updateCookie } = CookiesUtils(salaryFunctionComponents);
+    useEffect(() => {
+        updateCookie();
+    }, [payPerHour]);
 
     return {
         salary,
@@ -58,7 +68,6 @@ export function SalaryFunctionUtils() {
         changePayFrequency,
         changeHours,
         changeHourFrequency,
-        wageFormProps
+        salaryFunctionComponents,
     };
 }
-
