@@ -56,7 +56,7 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     const { updateCookie } = CookiesUtils(salaryFunctionComponents);
     useEffect(() => {
         updateCookie();
-    }, [payPerHour]);
+    }, [salary, hours]);
 
     return {
         salary,
