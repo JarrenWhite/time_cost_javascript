@@ -5,16 +5,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {SalaryFunctionUtils} from "./wage_form/SalaryFunctionUtils.jsx";
 import CostDisplay from "./cost_details/CostDisplay.jsx";
 import {HoursCostFunctionUtils} from "./cost_details/HoursCostFunctionUtils.jsx";
+import {Cookies} from "react-cookie";
+import {CookiesUtils} from "./wage_form/CookiesUtils.jsx";
+import {useEffect} from "react";
 
 function App() {
+    const cookies = new Cookies()
+
     const {
         payPerHour,
         wageFormProps,
-    } = SalaryFunctionUtils();
+    } = SalaryFunctionUtils(cookies);
     const {
         costDisplayProps
-    } = HoursCostFunctionUtils({payPerHour})
+    } = HoursCostFunctionUtils({payPerHour});
+    const { readCookie } = CookiesUtils(cookies, wageFormProps);
 
+    useEffect(() => {
+        readCookie();
+    }, []);
 
     return (
         <>

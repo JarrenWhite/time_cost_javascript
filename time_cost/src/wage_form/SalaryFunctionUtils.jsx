@@ -3,7 +3,7 @@ import {CostFunctionUtils} from "../cost_details/CostFunctionUtils.jsx";
 import {Cookies} from "react-cookie";
 import {CookiesUtils} from "./CookiesUtils.jsx";
 
-export function SalaryFunctionUtils() {
+export function SalaryFunctionUtils(cookies) {
     // Variables for salary information
     const [salary, setSalary] = useState('');
     const [payFrequency, setPayFrequency] = useState('Year'); // Hour, Week, Month, Year, Four Weeks
@@ -39,7 +39,6 @@ export function SalaryFunctionUtils() {
     }
 
     // When pay per hour changes
-    const cookies = new Cookies();
     const { updateCookie } = CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency);
     useEffect(() => {
         updateCookie();
