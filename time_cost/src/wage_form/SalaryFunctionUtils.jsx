@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import {CostFunctionUtils} from "../cost_details/CostFunctionUtils.jsx";
-import {Cookies} from "react-cookie";
 import {CookiesUtils} from "./CookiesUtils.jsx";
 
 export function SalaryFunctionUtils(cookies) {
@@ -38,15 +37,8 @@ export function SalaryFunctionUtils(cookies) {
         }
     }
 
-    // When pay per hour changes
-    const { updateCookie } = CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency);
-    useEffect(() => {
-        updateCookie();
-    }, [payPerHour]);
-
-
     // Wage form props
-    const wageFormProps = {
+    const salaryFunctionComponents = {
         salary,
         payFrequency,
         hours,
@@ -56,6 +48,12 @@ export function SalaryFunctionUtils(cookies) {
         changeHours,
         changeHourFrequency,
     };
+
+    // When pay per hour changes
+    const { updateCookie } = CookiesUtils(cookies, salaryFunctionComponents);
+    useEffect(() => {
+        updateCookie();
+    }, [payPerHour]);
 
     return {
         salary,
@@ -67,7 +65,7 @@ export function SalaryFunctionUtils(cookies) {
         changePayFrequency,
         changeHours,
         changeHourFrequency,
-        wageFormProps
+        salaryFunctionComponents
     };
 }
 

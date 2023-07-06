@@ -1,6 +1,7 @@
-export function CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency) {
+export function CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency,
+                             changeSalary, changePayFrequency, changeHours, changeHourFrequency,) {
 
-    // Set domain of cookie (localost when testing)
+    // Set domain of cookie (localhost when testing)
     const isLocalhost = window.location.hostname === 'localhost';
     const domain = isLocalhost ? 'localhost' : 'jarrenwhite.github.io';
 
@@ -24,8 +25,6 @@ export function CookiesUtils(cookies, salary, payFrequency, hours, hourFrequency
 
         // Serialise content of cookie
         const cookieString = JSON.stringify(cookieArray);
-        console.log(cookieArray);
-        console.log(cookieString);
 
         cookies.set('settings-cookie', cookieString, { domain: domain, path: '/', secure: true });
     }

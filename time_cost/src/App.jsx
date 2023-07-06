@@ -14,12 +14,12 @@ function App() {
 
     const {
         payPerHour,
-        wageFormProps,
+        salaryFunctionComponents,
     } = SalaryFunctionUtils(cookies);
     const {
         costDisplayProps
     } = HoursCostFunctionUtils({payPerHour});
-    const { readCookie } = CookiesUtils(cookies, wageFormProps);
+    const { readCookie } = CookiesUtils(cookies, salaryFunctionComponents);
 
     useEffect(() => {
         readCookie();
@@ -27,7 +27,7 @@ function App() {
 
     return (
         <>
-            <WageForm {...wageFormProps} />
+            <WageForm {...salaryFunctionComponents} />
             <CostDisplay payPerHour={payPerHour} {...costDisplayProps} />
         </>
     )
