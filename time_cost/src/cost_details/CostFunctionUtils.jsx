@@ -11,7 +11,6 @@ export function CostFunctionUtils({salary, payFrequency, hours, hourFrequency}) 
         // Else, calculate pay per year & hours per year
         const yearlySalary = parseFloat(salary) * timesPerYear[payFrequency];
         const yearlyHours = parseFloat(hours) * timesPerYear[hourFrequency];
-        console.log('Hours: ' + hours);
         return (yearlySalary / yearlyHours);
     }
 
