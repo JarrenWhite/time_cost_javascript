@@ -11,6 +11,7 @@ import {useEffect, useState} from "react";
 
 function App() {
     const [denyCookies, setDenyCookies] = useState(true)
+    const [loading, setLoading] = useState(true)
     const cookies = new Cookies()
 
     const {
@@ -23,9 +24,20 @@ function App() {
     const { readCookie } = CookiesUtils(salaryFunctionComponents);
 
     useEffect(() => {
-        readCookie();
+        const initialise = async () => {
+            await readCookie();
+            setLoading(false); // Set loading state to false after readCookie completes
+        };
+        initialise().then(r => {});
     }, []);
 
+
+    // Render loading state while waiting for readCookie
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    // Then render full page
     return (
         <>
             <WageForm {...salaryFunctionComponents} />
