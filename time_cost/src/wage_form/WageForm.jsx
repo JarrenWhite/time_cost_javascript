@@ -17,12 +17,12 @@ function WageForm({
             <SalaryForm salary={salary} changeSalary={changeSalary}/>
             <div className={'frequency-form-bar'}>
                 <label className={'per-phrase'}>per</label>
-                <FrequencyForm frequency={payFrequency} changeFrequency={changePayFrequency}/>
+                <FrequencyForm frequency={payFrequency} changeFrequency={changePayFrequency} allowHours={true}/>
             </div>
             <HoursForm hours={hours} changeHours={changeHours}/>
             <div className={'frequency-form-bar'}>
                 <label className={'per-phrase'}>per</label>
-                <FrequencyForm frequency={hourFrequency} changeFrequency={changeHourFrequency}/>
+                <FrequencyForm frequency={hourFrequency} changeFrequency={changeHourFrequency} allowHours={false}/>
             </div>
         </div>
     )
