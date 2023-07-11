@@ -12,11 +12,12 @@ export function TaxCalcUtils() {
         return amount * lossRate;
     }
 
+    // Calculate the total cost to an income, given brackets
     const calculateTaxCost = (grossIncome, bracketArray, costsArray) => {
         let runningCost = 0;
-        let i = 1;
 
         // Calculate total cost from each tax bracket
+        let i = 1;
         while (i < bracketArray.length) {
             if (grossIncome <= bracketArray[i]) {
                 const earnedInBracket = grossIncome - bracketArray[i-1];
