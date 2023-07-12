@@ -1,4 +1,4 @@
-import TaxToggleBox from "../wage_form/TaxToggleBox.jsx";
+import TaxToggleBox from "./TaxToggleBox.jsx";
 
 function TaxSelectionForm({predictTax, changePredictTax}) {
 
