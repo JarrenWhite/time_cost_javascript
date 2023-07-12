@@ -25,7 +25,6 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     }
     const changePayFrequency = (newFrequency) => {
         setPayFrequency(newFrequency);
-        changePredictTax();
     }
     const changeHours = (newHours) => {
         setHours(newHours);

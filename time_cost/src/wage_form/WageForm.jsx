@@ -1,7 +1,6 @@
 import SalaryForm from "./SalaryForm.jsx";
 import FrequencyForm from "./FrequencyForm.jsx";
 import HoursForm from "./HoursForm.jsx";
-import TaxToggleBox from "./TaxToggleBox.jsx";
 
 function WageForm({
                       salary,
@@ -12,8 +11,6 @@ function WageForm({
                       changeHours,
                       hourFrequency,
                       changeHourFrequency,
-                      predictTax,
-                      changePredictTax,
                   }) {
     return (
         <div>
@@ -26,9 +23,6 @@ function WageForm({
             <div className={'frequency-form-bar'}>
                 <label className={'per-phrase'}>per</label>
                 <FrequencyForm frequency={hourFrequency} changeFrequency={changeHourFrequency} allowHours={false}/>
-            </div>
-            <div>
-                <TaxToggleBox predictTax={predictTax} changePredictTax={changePredictTax} />
             </div>
         </div>
     )

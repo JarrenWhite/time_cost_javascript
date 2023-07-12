@@ -8,6 +8,7 @@ import {HoursCostFunctionUtils} from "./cost_details/HoursCostFunctionUtils.jsx"
 import {Cookies} from "react-cookie";
 import {CookiesUtils} from "./wage_form/CookiesUtils.jsx";
 import {useEffect, useState} from "react";
+import TaxSelectionForm from "./tax_calcs/TaxSelectionForm.jsx";
 
 function App() {
     const [denyCookies, setDenyCookies] = useState(true)
@@ -41,6 +42,7 @@ function App() {
     return (
         <>
             <WageForm {...salaryFunctionComponents} />
+            <TaxSelectionForm {...salaryFunctionComponents}/>
             <CostDisplay payPerHour={payPerHour} {...costDisplayProps} />
         </>
     )
