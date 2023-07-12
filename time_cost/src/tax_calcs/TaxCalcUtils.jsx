@@ -1,8 +1,8 @@
 const taxBrackets = [0, 12570, 50270, 125140]
 const taxAmounts = [0, 20, 40, 45]
 
-const ninoBrackets = [0, 175]
-const ninoAmounts = [0, 13.8]
+const ninoBrackets = [0, 12584, 50284]
+const ninoAmounts = [0, 12, 2]
 
 export function TaxCalcUtils() {
 
@@ -31,7 +31,7 @@ export function TaxCalcUtils() {
         }
 
         // If income is greater than the highest tax bracket, add the difference
-        if (grossIncome > bracketArray[i-1]) {
+        if (grossIncome > bracketArray[bracketArray.length-1]) {
             const earnedAtMax = grossIncome - bracketArray[i-1];
             runningCost += calculateCost(earnedAtMax, costsArray[i-1]);
         }

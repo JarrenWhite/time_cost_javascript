@@ -10,6 +10,7 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     const [hourFrequency, setHourFrequency] = useState('Week'); // Hour, Week, Month, Year, Four Weeks
     const [payPerHour, setPayPerHour] = useState(0);
     const [predictTax, setPredictTax] = useState(false);
+    const [taxedPayPerHour, setTaxedPayPerHour] = useState(0);
 
     // Get Pay Per Hour info from wage calculator
     const {recalculatePayPerHour} = CostFunctionUtils({salary, payFrequency, hours, hourFrequency});
@@ -17,7 +18,7 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     // Update pay per hour on variable change
     useEffect(() => {
         changePayPerHour();
-    }, [salary, payFrequency, hours, hourFrequency]);
+    }, [salary, payFrequency, hours, hourFrequency, predictTax]);
 
     // Manage variable changes
     const changeSalary = (newSalary) => {
@@ -34,7 +35,12 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     }
     const changePayPerHour = () => {
         if (salary !== '' && (payFrequency === 'Hours' || hours !== '')) {
-            setPayPerHour(recalculatePayPerHour());
+            const recalculations = recalculatePayPerHour(predictTax);
+            setPayPerHour(recalculations[0]);
+
+            if (predictTax) {
+                setTaxedPayPerHour(recalculations[1]);
+            }
         }
     }
     const changePredictTax = () => {
