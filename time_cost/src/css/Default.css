@@ -17,6 +17,12 @@ body {
     display: flex;
 }
 
+.predict-tax-form-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .frequency-form-input {
     flex-grow: 1;
 }
@@ -24,4 +30,13 @@ body {
 .per-phrase {
     margin-left: 10px;
     margin-right: 5px;
+}
+
+.predict-phrase {
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.toggle-box {
+    margin-left: auto;
 }
