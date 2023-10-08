@@ -1,3 +1,5 @@
+Navigate to /time_cost before running any npm commands.
+
 Build the deployment:
     npm run build
 
