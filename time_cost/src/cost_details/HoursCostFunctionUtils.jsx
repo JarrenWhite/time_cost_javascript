@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export function HoursCostFunctionUtils({payPerHour}) {
+export function HoursCostFunctionUtils() {
     // Cost setting variables
     const [financialCost, setFinancialCost] = useState('');
     const [hoursCost, setHourCost] = useState('00:00');
@@ -18,9 +18,9 @@ export function HoursCostFunctionUtils({payPerHour}) {
         return fullHours.toString() + ':' + minutes;
     }
 
-    const calculateTimeCost = (itemCost) => {
-        if (payPerHour !== 0 && itemCost !== 0) {
-            return hoursToReadable(itemCost / payPerHour);
+    const calculateTimeCost = (itemCost, hourlyPay) => {
+        if (hourlyPay !== 0 && itemCost !== 0) {
+            return hoursToReadable(itemCost / hourlyPay);
         }
         return '--:--';
     }

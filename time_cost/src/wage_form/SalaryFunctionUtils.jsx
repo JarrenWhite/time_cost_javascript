@@ -76,6 +76,7 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
         hours,
         hourFrequency,
         payPerHour,
+        taxedPayPerHour,
         predictTax,
         changeSalary,
         changePayFrequency,
