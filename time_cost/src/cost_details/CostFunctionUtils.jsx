@@ -7,18 +7,21 @@ export function CostFunctionUtils({salary, payFrequency, hours, hourFrequency}) 
     const {calculateNetIncome} = TaxCalcUtils();
 
     const recalculatePayPerHour = (predictTax) => {
-        // If payFrequency is hourly, already have pay per hour
+        let yearlySalary = 0;
+        const yearlyHours = parseFloat(hours) * timesPerYear[hourFrequency];
+        let normalPayPerHour = 0;
+
+        // If payFrequency is hourly, calculations are different
         if (payFrequency === 'Hour') {
-            return parseFloat(salary);
+            normalPayPerHour = parseFloat(salary);
+            yearlySalary = parseFloat(salary) * yearlyHours;
+        } else {
+            yearlySalary = parseFloat(salary) * timesPerYear[payFrequency];
+            normalPayPerHour = yearlySalary / yearlyHours;
         }
 
-        // Else, calculate pay per year & hours per year
-        const yearlySalary = parseFloat(salary) * timesPerYear[payFrequency];
-        const yearlyHours = parseFloat(hours) * timesPerYear[hourFrequency];
-        const normalPayPerHour = yearlySalary / yearlyHours;
-
-        // If tax to be predicted, return both types
-        if (predictTax) {
+        // If tax to be predicted (and can be), return both types
+        if (predictTax && yearlyHours > 0) {
             const taxedPayPerHour = calculateNetIncome(yearlySalary) / yearlyHours;
             return [normalPayPerHour, taxedPayPerHour];
         }

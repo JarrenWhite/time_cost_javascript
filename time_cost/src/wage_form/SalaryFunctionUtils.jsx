@@ -7,7 +7,7 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
     const [salary, setSalary] = useState('');
     const [payFrequency, setPayFrequency] = useState('Year'); // Hour, Week, Month, Year, Four Weeks
     const [hours, setHours] = useState('');
-    const [hourFrequency, setHourFrequency] = useState('Week'); // Hour, Week, Month, Year, Four Weeks
+    const [hourFrequency, setHourFrequency] = useState('Week'); // Week, Month, Year, Four Weeks
     const [payPerHour, setPayPerHour] = useState(0);
     const [predictTax, setPredictTax] = useState(false);
     const [taxedPayPerHour, setTaxedPayPerHour] = useState(0);
@@ -38,8 +38,10 @@ export function SalaryFunctionUtils(cookies, denyCookies, setDenyCookies,) {
             const recalculations = recalculatePayPerHour(predictTax);
             setPayPerHour(recalculations[0]);
 
-            if (predictTax) {
+            if (predictTax && parseFloat(hours) > 0) {
                 setTaxedPayPerHour(recalculations[1]);
+            } else {
+                setTaxedPayPerHour(null);
             }
         }
     }

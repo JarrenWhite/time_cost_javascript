@@ -32,7 +32,7 @@ function CostDisplay({payPerHour, taxedPayPerHour, predictTax, financialCost, se
     return(
         <div>
             <Form.Group>
-                <Form.Label>Pay Per Hour: £{predictTax ? taxedPayPerHour.toFixed(2) : payPerHour.toFixed(2)}</Form.Label>
+                <Form.Label>Pay Per Hour: £{taxedPayPerHour !== null ? taxedPayPerHour.toFixed(2) : payPerHour.toFixed(2)}</Form.Label>
                 <InputGroup>
                     <Form.Control
                         className={"cost-display"}
@@ -44,6 +44,8 @@ function CostDisplay({payPerHour, taxedPayPerHour, predictTax, financialCost, se
                 </InputGroup>
                 <Form.Label>Costs {hoursCost} hours of work.</Form.Label>
             </Form.Group>
+            <label className={"warning-label"}>{predictTax && taxedPayPerHour === null ?
+                "Tax Prediction Requires Hours" : ""}</label>
         </div>
     )
 }
