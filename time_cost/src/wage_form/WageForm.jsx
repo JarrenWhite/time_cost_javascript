@@ -10,7 +10,7 @@ function WageForm({
                       hours,
                       changeHours,
                       hourFrequency,
-                      changeHourFrequency
+                      changeHourFrequency,
                   }) {
     return (
         <div>

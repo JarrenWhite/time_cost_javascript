@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import { Form, InputGroup } from 'react-bootstrap';
 
-function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, setHourCost, calculateTimeCost}) {
+function CostDisplay({payPerHour, taxedPayPerHour, predictTax, financialCost, setFinancialCost, hoursCost, setHourCost, calculateTimeCost}) {
     const costRegex = /^\d*\.?\d?\d?$/
 
     // If pay per hour changes, update hour cost
     useEffect(() => {
         hourCostCheck(financialCost);
-    }, [payPerHour]);
+    }, [payPerHour, predictTax]);
 
     // If input changes, update hour cost
     const handleInputChange = (e) => {
@@ -21,7 +21,8 @@ function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, se
             setHourCost('--:--');
         } else if (costRegex.test(inputValue)) {
             setFinancialCost(inputValue);
-            setHourCost(calculateTimeCost(parseFloat(inputValue)));
+            const hourlyRate = predictTax ? payPerHour : taxedPayPerHour;
+            setHourCost(calculateTimeCost(parseFloat(inputValue), hourlyRate));
         }
     }
 
@@ -31,7 +32,7 @@ function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, se
     return(
         <div>
             <Form.Group>
-                <Form.Label>Pay Per Hour: £{payPerHour.toFixed(2)}</Form.Label>
+                <Form.Label>Pay Per Hour: £{taxedPayPerHour !== null ? taxedPayPerHour.toFixed(2) : payPerHour.toFixed(2)}</Form.Label>
                 <InputGroup>
                     <Form.Control
                         className={"cost-display"}
@@ -43,6 +44,8 @@ function CostDisplay({payPerHour, financialCost, setFinancialCost, hoursCost, se
                 </InputGroup>
                 <Form.Label>Costs {hoursCost} hours of work.</Form.Label>
             </Form.Group>
+            <label className={"warning-label"}>{predictTax && taxedPayPerHour === null ?
+                "Tax Prediction Requires Hours" : ""}</label>
         </div>
     )
 }

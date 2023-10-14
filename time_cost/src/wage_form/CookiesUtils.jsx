@@ -1,10 +1,18 @@
 export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequency,
                              changeSalary, changePayFrequency, changeHours, changeHourFrequency,
-                                 denyCookies, setDenyCookies}) {
+                                 denyCookies, setDenyCookies, predictTax, changePredictTax}) {
 
     // Set domain of cookie (localhost when testing)
-    const isLocalhost = window.location.hostname === 'localhost';
-    const domain = isLocalhost ? 'localhost' : 'jarrenwhite.github.io';
+    const linux_testing = 'localhost';
+    const windows_testing = '127.0.0.1';
+    const deployment_version = 'jarrenwhite.github.io';
+
+    const isLinuxHost = window.location.hostname === '127.0.0.1';
+    const isWindowsHost = window.location.hostname === '127.0.0.1';
+
+    let domain = isLinuxHost ? linux_testing : deployment_version;
+    domain = isWindowsHost ? windows_testing : deployment_version;
+
     const salaryCookie = 'settings-cookie'
     const consentCookie = 'consent-cookie'
 
@@ -39,6 +47,9 @@ export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequenc
                 changePayFrequency(salaryCookieValues.payFrequency);
                 changeHours(salaryCookieValues.hours);
                 changeHourFrequency(salaryCookieValues.hourFrequency);
+                if (salaryCookieValues.useTaxEstimate) {
+                    changePredictTax();
+                }
 
                 break;
             }
@@ -47,7 +58,9 @@ export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequenc
 
     // Function to manage getting cookie permission
     const askPermission = () => {
-        const result = window.confirm('This site uses cookies to improve your experience.\nThey just store your selections for faster setup next time.\nAre you willing to receive them?');
+        const result = window.confirm('This site uses cookies to improve your experience.\n' +
+            'They just store your selections for faster setup next time.\n' +
+            'Are you willing to receive them?');
         if (result) {
             setDenyCookies(false);
             cookies.set(consentCookie, 'Allow', { domain: domain, path: '/', secure: true, sameSite: 'strict' });
@@ -66,6 +79,7 @@ export function CookiesUtils({cookies, salary, payFrequency, hours, hourFrequenc
             payFrequency: payFrequency,
             hours: hours,
             hourFrequency: hourFrequency,
+            useTaxEstimate: predictTax,
         }
 
         // Serialise content of cookie
